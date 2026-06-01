@@ -9,7 +9,13 @@ function sendMessage() {
     chat.innerHTML += <div><b>أنت:</b> ${text}</div>;
 
     let response = "";
-
+const books = [
+    "المكتبات الرقمية",
+    "الفهرسة الوصفية",
+    "التصنيف في المكتبات",
+    "إدارة المعرفة",
+    "نظم استرجاع المعلومات"
+];
     if (text.includes("مرحبا") || text.includes("السلام")) {
         response = "أهلاً بك في المكتبة الرقمية الذكية. كيف يمكنني مساعدتك؟";
     }
@@ -45,10 +51,24 @@ function sendMessage() {
     else if (text.includes("مؤلف")) {
         response = "اكتب اسم المؤلف للبحث عن أعماله المتوفرة في المكتبة.";
     }
+else if (text.includes("مؤلف")) {
+    response = "اكتب اسم المؤلف...";
+}
 
-    else {
-        response = "عذراً، لم أفهم سؤالك. يمكنك السؤال عن الكتب أو المقالات أو الفهرسة أو الاستعارة أو الخدمات.";
+else if (text.startsWith("ابحث عن")) {
+
+    const keyword = text.replace("ابحث عن", "").trim();
+
+    const results = books.filter(book =>
+        book.includes(keyword)
+    );
+
+    if (results.length > 0) {
+        response = "وجدت الكتب التالية:<br>" + results.join("<br>");
+    } else {
+        response = "عذراً، لم أجد كتاباً بهذا الاسم.";
     }
+    
 
     setTimeout(() => {
         chat.innerHTML += <div><b>المساعد:</b> ${response}</div>;
