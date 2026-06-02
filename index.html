@@ -20,7 +20,7 @@ const books = [
         response = "أهلاً بك في المكتبة الرقمية الذكية. كيف يمكنني مساعدتك؟";
     }
 
-    else if (text.includes("كتاب")) {
+  else if (text.includes("كتاب") || text.includes("كتب")) {
         response = "يمكنني مساعدتك في البحث عن الكتب المتوفرة في المكتبة.";
     }
 
@@ -28,7 +28,7 @@ const books = [
         response = "يمكنك البحث عن المقالات العلمية حسب الموضوع أو المؤلف.";
     }
 
-    else if (text.includes("استعارة")) {
+    else if (text.includes("استعارة") || text.includes("استعاره")) {
         response = "لاستعارة كتاب، قم بتسجيل الدخول ثم اختر الكتاب المطلوب.";
     }
 
