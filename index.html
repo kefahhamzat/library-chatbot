@@ -58,17 +58,18 @@ else if (text.includes("مؤلف")) {
 else if (text.startsWith("ابحث عن")) {
 
     const keyword = text.replace("ابحث عن", "").trim();
+const keyword = text.replace("البحث عن", "").trim();
 
-    const results = books.filter(book =>
-        book.includes(keyword)
-    );
-
+if (keyword === "") {
+    response = "يرجى كتابة اسم الكتاب أو الكلمة المفتاحية للبحث.";
+} else {
+    const results = books.filter(book => book.includes(keyword));
     if (results.length > 0) {
-        response = "وجدت الكتب التالية:<br>" + results.join("<br>");
+        response = "الكتب المتاحة: <br>" + results.join("<br>");
     } else {
-        response = "عذراً، لم أجد كتاباً بهذا الاسم.";
+        response = "عذراً، لم يتم العثور على هذا الكتاب.";
     }
-    
+}   
 
     setTimeout(() => {
         chat.innerHTML += <div><b>المساعد:</b> ${response}</div>;
