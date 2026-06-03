@@ -109,7 +109,7 @@ nav a {
     <input type="text" id="userInput" placeholder="اكتب سؤالك...">
     <button onclick="sendMessage()">إرسال</button>
   </div>
-</div><script>
+<script>
 function sendMessage() {
     const input = document.getElementById("userInput");
     const chat = document.getElementById("chat");
@@ -145,33 +145,7 @@ function sendMessage() {
     
     input.value = "";
 }
-
-    } else if (text.includes("أوقات") || text.includes("وقت") || text.includes("الدوام")) {
-        reply = "المكتبة الرقمية متاحة لخدمتكم على مدار 24 ساعة طوال أيام الأسبوع.";
-    } else if (text.includes("تواصل") || text.includes("اتصال") || text.includes("رقم")) {
-        reply = "يمكنك التواصل مع إدارة المشروع عبر البريد الإلكتروني المخصص للمكتبة.";
-    } else if (text.includes("شكرا") || text.includes("مشكور")) {
-        reply = "على الرحب والسعة! يسعدني دائماً تقديم المساعدة.";
-    }
-    
-    setTimeout(() => {
-        chat.innerHTML += `<p style="color: #2b5876;"><strong>البوت:</strong> ${reply}</p>`;
-        chat.scrollTop = chat.scrollHeight;
-    }, 500);
-    
-    input.value = "";
-}
-
-        reply = "أهلاً بك في المكتبة الرقمية الذكية! كيف يمكنني مساعدتك اليوم؟";
-    }
-    
-    setTimeout(() => {
-        chat.innerHTML += `<p style="color: #2b5876;"><strong>البوت:</strong> ${reply}</p>`;
-        chat.scrollTop = chat.scrollHeight;
-    }, 500);
-    
-    input.value = "";
-}
-
-</script></body>
+</script>
+</body>
 </html>
+
