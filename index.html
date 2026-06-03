@@ -113,29 +113,32 @@ nav a {
 function sendMessage() {
     const input = document.getElementById("userInput");
     const chat = document.getElementById("chat");
-    
     const text = input.value.trim();
     
     if (text === "") return;
     
     chat.innerHTML += `<p><strong>أنت:</strong> ${text}</p>`;
-    let reply = "عذراً، لم أفهمك. حاول كتابة كلمات مثل (كتب، مقال، خدمات، أوقات، تواصل).";
+    let reply = "عذراً، لم أفهمك بشكل دقيق. حاول كتابة كلمات مفتاحية واضحة.";
     
-    // الفحص المرن للكلمات المفتاحية
-    if (text.includes("كتب") || text.includes("الكتب")) {
+    // قائمة كلمات تخصص المكتبات والمعلومات (يمكنك زيادة الكلمات هنا مستقبلاً)
+    const libraryKeywords = [
+        "فهرسة", "تصنيف", "مراجع", "دوريات", "تزويد", "أرشيف", "مخطوطات", 
+        "تكشيف", "استخلاص", "أوعية", "ببليوغرافيا", "مستودع", "معلومات", "إعارة"
+    ];
+
+    // التحقق إذا كان النص يحتوي على أي كلمة من التخصص
+    const foundKeyword = libraryKeywords.some(keyword => text.includes(keyword));
+
+    if (foundKeyword) {
+        reply = "يبدو أنك تستفسر عن مصادر أو عمليات في تخصص المكتبات والمعلومات. يمكنك استخدام قائمة الخدمات في الأعلى للوصول إلى الكتب والمقالات المتخصصة، أو كتابة عنوان أدق لمساعدتك.";
+    } else if (text.includes("اتجاهات") || text.includes("أخصائي") || text.includes("اخصائي")) {
+        reply = `تم العثور على المقال المطلوب! يمكنك تحميل مقال "اتجاهات أخصائي المكتبات" مباشرة بصيغة PDF عبر الضغط على الرابط التالي: <br><a href="book.pdf" download style="color: #fff; background: #2b5876; padding: 2px 5px; border-radius: 3px; text-decoration: none; display: inline-block; margin-top: 5px;">📥 اضغط هنا للتحميل</a>`;
+    } else if (text.includes("كتب") || text.includes("الكتب")) {
         reply = "يمكنك البحث عن الكتب عبر قاعدة البيانات المتاحة.";
     } else if (text.includes("مقال") || text.includes("المقالات")) {
         reply = "نساعدك في الوصول إلى المقالات العلمية بسهولة.";
-    } else if (text.includes("خدمات") || text.includes("الخدمات")) {
-        reply = "نقدم خدمات مرجعية رقمية متكاملة.";
     } else if (text.includes("مرحبا") || text.includes("أهلا") || text.includes("السلام")) {
-        reply = "أهلاً بك في المكتبة الرقمية الذكية! كيف يمكنني مساعدتك اليوم؟";
-    } else if (text.includes("أوقات") || text.includes("وقت") || text.includes("الدوام")) {
-        reply = "المكتبة الرقمية متاحة لخدمتكم على مدار 24 ساعة طوال أيام الأسبوع.";
-    } else if (text.includes("تواصل") || text.includes("اتصال") || text.includes("رقم")) {
-        reply = "يمكنك التواصل مع إدارة المشروع عبر البريد الإلكتروني المخصص للمكتبة.";
-    } else if (text.includes("شكرا") || text.includes("مشكور")) {
-        reply = "على الرحب والسعة! يسعدني دائماً تقديم المساعدة.";
+        reply = "أهلاً بك في المكتبة الرقمية الذكية! كيف يمكنني مساعدتك اليوم？";
     }
     
     setTimeout(() => {
@@ -148,4 +151,3 @@ function sendMessage() {
 </script>
 </body>
 </html>
-
