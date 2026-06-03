@@ -111,24 +111,35 @@ nav a {
   </div>
 </div><script>
 function sendMessage() {
-  const input = document.getElementById('userInput');
-  const chat = document.getElementById('chat');
- const text = input.value;
-  if (!text) return;
-  chat.innerHTML += `<div><b>أنت:</b> ${text}</div>`;
-  let response = "لم أفهم السؤال، حاول مرة أخرى.";
-  if (text.includes("كتاب")) {
-    response = "يمكنك البحث عن الكتب عبر قاعدة بيانات المكتبة.";
-  } else if (text.includes("مقال")) {
-    response = "نساعدك في الوصول إلى المقالات العلمية بسهولة.";
-  } else if (text.includes("خدمة")) {
-    response = "نقدم خدمات مرجعية رقمية متكاملة.";
-  }
-  setTimeout(() => {
-    chat.innerHTML += `<div><b>المساعد:</b> ${response}</div>`;
-    chat.scrollTop = chat.scrollHeight;
-  }, 500);
-  input.value = "";
+    const input = document.getElementById("userInput");
+    const chat = document.getElementById("chat");
+    
+    // تحويل النص إلى أحرف صغيرة وتنظيف الفراغات تماماً
+    const text = input.value.trim();
+    
+    if (text === "") return;
+    
+    chat.innerHTML += `<p><strong>أنت:</strong> ${text}</p>`;
+    let reply = "عذراً، لم أفهمك. حاول مرة أخرى.";
+    
+    // الفحص المرن للكلمات المفتاحية
+    if (text.includes("كتب") || text.includes("الكتب")) {
+        reply = "يمكنك البحث عن الكتب عبر قاعدة البيانات المتاحة.";
+    } else if (text.includes("مقال") || text.includes("المقالات")) {
+        reply = "نساعدك في الوصول إلى المقالات العلمية بسهولة.";
+    } else if (text.includes("خدمات") || text.includes("الخدمات")) {
+        reply = "نقدم خدمات مرجعية رقمية متكاملة.";
+    } else if (text.includes("مرحبا") || text.includes("أهلا")) {
+        reply = "أهلاً بك في المكتبة الرقمية الذكية! كيف يمكنني مساعدتك اليوم؟";
+    }
+    
+    setTimeout(() => {
+        chat.innerHTML += `<p style="color: #2b5876;"><strong>البوت:</strong> ${reply}</p>`;
+        chat.scrollTop = chat.scrollHeight;
+    }, 500);
+    
+    input.value = "";
 }
+
 </script></body>
 </html>
