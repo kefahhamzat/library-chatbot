@@ -114,13 +114,12 @@ function sendMessage() {
     const input = document.getElementById("userInput");
     const chat = document.getElementById("chat");
     
-    // تحويل النص إلى أحرف صغيرة وتنظيف الفراغات تماماً
     const text = input.value.trim();
     
     if (text === "") return;
     
     chat.innerHTML += `<p><strong>أنت:</strong> ${text}</p>`;
-    let reply = "عذراً، لم أفهمك. حاول مرة أخرى.";
+    let reply = "عذراً، لم أفهمك. حاول كتابة كلمات مثل (كتب، مقال، خدمات، أوقات، تواصل).";
     
     // الفحص المرن للكلمات المفتاحية
     if (text.includes("كتب") || text.includes("الكتب")) {
@@ -129,7 +128,24 @@ function sendMessage() {
         reply = "نساعدك في الوصول إلى المقالات العلمية بسهولة.";
     } else if (text.includes("خدمات") || text.includes("الخدمات")) {
         reply = "نقدم خدمات مرجعية رقمية متكاملة.";
-    } else if (text.includes("مرحبا") || text.includes("أهلا")) {
+    } else if (text.includes("مرحبا") || text.includes("أهلا") || text.includes("السلام")) {
+        reply = "أهلاً بك في المكتبة الرقمية الذكية! كيف يمكنني مساعدتك اليوم؟";
+    } else if (text.includes("أوقات") || text.includes("وقت") || text.includes("الدوام")) {
+        reply = "المكتبة الرقمية متاحة لخدمتكم على مدار 24 ساعة طوال أيام الأسبوع.";
+    } else if (text.includes("تواصل") || text.includes("اتصال") || text.includes("رقم")) {
+        reply = "يمكنك التواصل مع إدارة المشروع عبر البريد الإلكتروني المخصص للمكتبة.";
+    } else if (text.includes("شكرا") || text.includes("مشكور")) {
+        reply = "على الرحب والسعة! يسعدني دائماً تقديم المساعدة.";
+    }
+    
+    setTimeout(() => {
+        chat.innerHTML += `<p style="color: #2b5876;"><strong>البوت:</strong> ${reply}</p>`;
+        chat.scrollTop = chat.scrollHeight;
+    }, 500);
+    
+    input.value = "";
+}
+
         reply = "أهلاً بك في المكتبة الرقمية الذكية! كيف يمكنني مساعدتك اليوم؟";
     }
     
