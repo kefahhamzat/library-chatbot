@@ -113,7 +113,7 @@ nav a {
 function sendMessage() {
   const input = document.getElementById('userInput');
   const chat = document.getElementById('chat');
-  const text = input.value;
+ const text = input.value;
   if (!text) return;
   chat.innerHTML += `<div><b>أنت:</b> ${text}</div>`;
   let response = "لم أفهم السؤال، حاول مرة أخرى.";
