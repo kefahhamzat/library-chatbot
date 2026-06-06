@@ -278,13 +278,17 @@
 
         // قاعدة بيانات ذكية ومحلية للإجابة الفورية بثبات 100%
               // قاعدة بيانات ذكية ومحلية تدعم تحميل الملفات مباشرة من داخل الشات
+               // قاعدة بيانات ذكية ومحلية مصححة ومُرتبة الأولويات 100%
         function getSmartLocalResponse(prompt) {
             const query = prompt.toLowerCase();
 
-            // 1. قسم التحميلات والملفات
-            if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('ملف') || query.includes('أريد')) {
+            // الأولوية الأولى: إذا كانت الجملة تحتوي على طلب تحميل أو ملف
+            if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد')) {
                 let downloadReply = "بالتأكيد! إليك المواد العلمية المتاحة للتحميل المباشر بصيغة PDF بناءً على طلبك:<br><br>";
                 
+                if (query.includes('اتجاهات') || query.includes('أخصائي')) {
+                    return downloadReply + `<a href="./article1.pdf" download style="color: #fff; background: #1e3c72; padding: 5px 10px; border-radius: 4px; text-decoration: none; display: inline-block;">📥 تحميل مقال اتجاهات أخصائي المكتبات</a>`;
+                }
                 if (query.includes('علم المكتبات') || query.includes('المكتبات الحديث')) {
                     return downloadReply + `<a href="./book1.pdf" download style="color: #fff; background: #2a5298; padding: 5px 10px; border-radius: 4px; text-decoration: none; display: inline-block;">📥 تحميل كتاب علم المكتبات الحديث</a>`;
                 }
@@ -294,9 +298,6 @@
                 if (query.includes('ذكاء') || query.includes('التعليم')) {
                     return downloadReply + `<a href="./article2.pdf" download style="color: #fff; background: #1e3c72; padding: 5px 10px; border-radius: 4px; text-decoration: none; display: inline-block;">📥 تحميل مقال الذكاء الاصطناعي في التعليم</a>`;
                 }
-                if (query.includes('اتجاهات') || query.includes('أخصائي')) {
-                    return downloadReply + `<a href="./article1.pdf" download style="color: #fff; background: #1e3c72; padding: 5px 10px; border-radius: 4px; text-decoration: none; display: inline-block;">📥 تحميل مقال اتجاهات أخصائي المكتبات</a>`;
-                }
                 if (query.includes('ديوي') || query.includes('ورقة')) {
                     return downloadReply + `<a href="./worksheet1.pdf" download style="color: #fff; background: #28a745; padding: 5px 10px; border-radius: 4px; text-decoration: none; display: inline-block;">📥 تحميل ورقة عمل تصنيف ديوي</a>`;
                 }
@@ -304,11 +305,12 @@
                 // إذا طلب تحميل عام بدون تحديد اسم مادة معينة
                 return "إليك روابط التحميل السريعة للمواد الأساسية في مشروعنا:<br><br>" +
                     `<a href="./book1.pdf" download style="color: #fff; background: #2a5298; padding: 4px 8px; border-radius: 4px; text-decoration: none; display: inline-block; margin: 3px;">📚 كتاب المكتبات</a> ` +
+                    `<a href="./article1.pdf" download style="color: #fff; background: #1e3c72; padding: 4px 8px; border-radius: 4px; text-decoration: none; display: inline-block; margin: 3px;">📄 مقال الاتجاهات</a> ` +
                     `<a href="./article2.pdf" download style="color: #fff; background: #1e3c72; padding: 4px 8px; border-radius: 4px; text-decoration: none; display: inline-block; margin: 3px;">📄 مقال الذكاء الاصطناعي</a> ` +
                     `<a href="./worksheet1.pdf" download style="color: #fff; background: #28a745; padding: 4px 8px; border-radius: 4px; text-decoration: none; display: inline-block; margin: 3px;">📝 ورقة عمل ديوي</a>`;
             }
 
-            // 2. قسم الشروحات العلمية
+            // الأولوية الثانية: الشروحات العلمية (تظهر فقط إذا لم يطلب المستخدم تحميلاً)
             if (query.includes('مرحبا') || query.includes('أهلا') || query.includes('سلام')) {
                 return "مرحباً بك في المساعد الذكي للمكتبة الرقمية! أنا جاهز تماماً لمساعدتك في الشرح العلمي أو تزويدك بملفات التحميل المباشرة. ماذا تحتاج اليوم؟";
             }
@@ -330,4 +332,3 @@
     </script>
 </body>
 </html>
-
