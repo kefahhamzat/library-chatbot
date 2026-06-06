@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المكتبة الرقمية الذكية</title>
+    <!-- تحديث رابط الأيقونات لضمان عملها -->
     <link rel="stylesheet" href="https://cloudflare.com">
-
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -209,10 +209,9 @@
         </div>
     </div>
 
-    <!-- زر أيقونة المحادثة -->
+    <!-- زر أيقونة المحادثة المحدثة والمضمونة -->
     <div class="chat-badge" onclick="toggleChat()">
-      <i class="fa-solid fa-comment-dots"></i>
-
+        <i class="fa-solid fa-comment-dots"></i>
     </div>
 
     <!-- نافذة المحادثة -->
@@ -232,17 +231,9 @@
         </div>
     </div>
 
-    <!-- كود الـ JavaScript للاتصال بذكاء Gemini الاصطناعي -->
     <script>
-        // سطر 142: امسح النص العربي بالأسفل وضع الـ API Key الخاص بك داخل علامات التنصيص
-        const GEMINI_API_KEY = "from google import genai
-
-client = genai.Client(api_key="YOUR_API_KEY")
-
-response = client.models.generate_content(
-    model="gemini-3.5-flash", contents="Explain how AI works in a few words"
-)
-print(response.text)"; 
+        // ضع مفتاح الـ API الخاص بك من Google AI Studio هنا بين علامتي التنصيص
+        const GEMINI_API_KEY = "ضع_مفتاح_الـ_API_الخاص_بك_هنا"; 
 
         function toggleChat() {
             const chatContainer = document.getElementById('chatContainer');
@@ -260,18 +251,61 @@ print(response.text)";
             const messageText = inputElement.value.trim();
             if (!messageText) return;
 
-            // عرض رسالة المستخدم
             appendMessage(messageText, 'user-message');
             inputElement.value = '';
 
-            // عرض مؤشر جاري التفكير...
             const typingIndicator = appendMessage('جاري التفكير...', 'bot-message');
 
             try {
-                // استدعاء الذكاء الاصطناعي
                 const responseText = await getGeminiResponse(messageText);
-                
-                // إزالة مؤشر التفكير واستبداله بالإجابة الحقيقية
+                typingIndicator.remove();
+                appendMessage(responseText, 'bot-message');
+            } catch (error) {
+                console.error(error);
+                typingIndicator.remove();
+                appendMessage('عذراً، حدث خطأ أثناء الاتصال بالذكاء الاصطناعي. تأكد من إدخل مفتاح API صحيح.', 'bot-message');
+            }
+        }
+
+        function appendMessage(text, className) {
+            const chatBody = document.getElementById('chatBody');
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${className}`;
+            messageElement.innerHTML = text; 
+            chatBody.appendChild(messageElement);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            return messageElement;
+        }
+
+        async function getGeminiResponse(userPrompt) {
+            const systemInstruction = "أنت مساعد ذكي مخصص ومدمج في 'المكتبة الرقمية الذكية'. واجبك هو مساعدة الطلاب والباحثين والإجابة على أسئلتهم حول موضوعات المكتبات، الفهرسة، والذكاء الاصطناعي في التعليم بناءً على معرفتك الواسعة. أجب باللغة العربية بأسلوب علمي، مبسط وودود وموجز.";
+
+                  // ضع مفتاح الـ API الخاص بك هنا بين علامتي التنصيص
+        const GEMINI_API_KEY = "ضَعْ_مِفْتَاحَكَ_هُنَا"; 
+
+        function toggleChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.style.display = chatContainer.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const inputElement = document.getElementById('chatInput');
+            const messageText = inputElement.value.trim();
+            if (!messageText) return;
+
+            appendMessage(messageText, 'user-message');
+            inputElement.value = '';
+
+            const typingIndicator = appendMessage('جاري التفكير...', 'bot-message');
+
+            try {
+                const responseText = await getGeminiResponse(messageText);
                 typingIndicator.remove();
                 appendMessage(responseText, 'bot-message');
             } catch (error) {
@@ -291,6 +325,14 @@ print(response.text)";
             return messageElement;
         }
 
-        // دالة الاتصال المباشر بـ Gemini 1.5 Flash
         async function getGeminiResponse(userPrompt) {
-            // توجيهات النظام لتحديد سلوك وهدف الروبوت
+            const systemInstruction = "أنت مساعد ذكي مخصص ومدمج في 'المكتبة الرقمية الذكية'. واجبك هو مساعدة الطلاب والباحثين والإجابة على أسئلتهم حول موضوعات المكتبات، الفهرسة، والذكاء الاصطناعي في التعليم بناءً على معرفتك الواسعة. أجب باللغة العربية بأسلوب علمي، مبسط وودود وموجز.";
+
+           from google import genai
+
+client = genai.Client(api_key="YOUR_API_KEY")
+
+response = client.models.generate_content(
+    model="gemini-3.5-flash", contents="Explain how AI works in a few words"
+)
+print(response.text)
