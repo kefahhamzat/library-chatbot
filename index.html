@@ -233,7 +233,16 @@
 
     <script>
         // ضع مفتاح الـ API الخاص بك من Google AI Studio هنا بين علامتي التنصيص
-        const GEMINI_API_KEY = "ضع_مفتاح_الـ_API_الخاص_بك_هنا"; 
+            // نظام آمن لاستدعاء المفتاح وحفظه في المتصفح دون كشفه على GitHub
+        let GEMINI_API_KEY = localStorage.getItem("gemini_key");
+
+        if (!GEMINI_API_KEY) {
+            GEMINI_API_KEY = prompt("من فضلك أدخل مفتاح Gemini API لتفعيل الذكاء الاصطناعي:");
+            if (GEMINI_API_KEY) {
+                localStorage.setItem("gemini_key", GEMINI_API_KEY);
+            }
+        }
+ 
 
         function toggleChat() {
             const chatContainer = document.getElementById('chatContainer');
