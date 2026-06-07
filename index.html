@@ -284,26 +284,36 @@
               // قاعدة بيانات ذكية ومحلية تدعم تحميل الملفات مباشرة من داخل الشات
                // قاعدة بيانات ذكية ومحلية مصححة ومُرتبة الأولويات 100%
                 // دالة ديناميكية ذكية تقرأ جميع الملفات المرفوعة في الموقع تلقائياً
+                // دالة ديناميكية ذكية ومطورة للفحص الدقيق ومنع تداخل الكلمات
         function getSmartLocalResponse(prompt) {
             const query = prompt.toLowerCase();
 
-            // 1. استخراج كافة الروابط والملفات الموجودة في صفحة الموقع تلقائياً
+            // 1. جلب كافة الروابط المتاحة في واجهة الموقع
             const allLinks = Array.from(document.querySelectorAll('.category-box a'));
             
-            // 2. إذا كان المستخدم يطلب تحميلاً أو ملفاً
+            // 2. فحص إذا كان المستخدم يطلب تحميلاً أو ملفاً
             if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد')) {
                 
-                // البحث عن الملف المناسب بناءً على الكلمات المفتاحية التي كتبها المستخدم
-                let matchedLinks = allLinks.filter(link => {
-                    const linkText = link.textContent.toLowerCase();
-                    const fileUrl = link.getAttribute('href').toLowerCase();
-                    // فحص إذا كان اسم الرابط أو مساره يحتوي على الكلمة التي يبحث عنها المستخدم
-                    return query.split(' ').some(word => word.length > 2 && (linkText.includes(word) || fileUrl.includes(word)));
-                });
+                let matchedLinks = [];
 
-                let downloadReply = "بالتأكيد! إليك المواد العلمية المتاحة للتحميل المباشر بصيغة PDF بناءً على طلبك:<br><br>";
+                // فحص الكلمات المفتاحية الأساسية بدقة لتحديد ملف واحد مخصص
+                if (query.includes('ذكاء') || query.includes('اصطناعي')) {
+                    matchedLinks = allLinks.filter(link => link.textContent.includes('الذكاء الاصطناعي'));
+                } else if (query.includes('روبوت') || query.includes('دردشة') || query.includes('أثر')) {
+                    matchedLinks = allLinks.filter(link => link.textContent.includes('روبوت الدردشة'));
+                } else if (query.includes('اتجاهات') || query.includes('أخصائي')) {
+                    matchedLinks = allLinks.filter(link => link.textContent.includes('اتجاهات أخصائي'));
+                } else if (query.includes('علم المكتبات') || query.includes('المكتبات الحديث')) {
+                    matchedLinks = allLinks.filter(link => link.textContent.includes('علم المكتبات'));
+                } else if (query.includes('فهرسة') || query.includes('الفهرس')) {
+                    matchedLinks = allLinks.filter(link => link.textContent.includes('الفهرسة'));
+                } else if (query.includes('ديوي')) {
+                    matchedLinks = allLinks.filter(link => link.textContent.includes('ديوي'));
+                }
 
-                // إذا وجد الروبوت ملفاً مطابقاً تماماً لما طلبه المستخدم
+                let downloadReply = "بالتأكيد! إليك المادة العلمية المتاحة للتحميل المباشر بصيغة PDF بناءً على طلبك المخصص:<br><br>";
+
+                // إذا نجح الفحص الدقيق في العثور على الملف المحدد بمفرده
                 if (matchedLinks.length > 0) {
                     matchedLinks.forEach(link => {
                         downloadReply += `<a href="${link.getAttribute('href')}" download="${link.getAttribute('download') || ''}" style="color: #fff; background: #2a5298; padding: 5px 10px; border-radius: 4px; text-decoration: none; display: inline-block; margin: 5px;">📥 تحميل ${link.textContent.replace('📥', '').trim()}</a><br>`;
@@ -311,17 +321,17 @@
                     return downloadReply;
                 }
                 
-                // إذا طلب تحميلاً عاماً أو لم يجد اسماً مطابقاً، يعرض له جميع ملفات الموقع تلقائياً دون استثناء!
-                let allFilesReply = "إليك روابط التحميل السريعة لجميع المواد العلمية والملفات المتاحة حالياً في موقعنا:<br><br>";
+                // إذا كتب كلمة "تحميل" أو "مقال" بشكل عام جداً دون تحديد أي اسم موضوع
+                let allFilesReply = "إليك روابط التحميل السريعة لجميع المواد العلمية والملفات المتاحة في موقعنا لتختار منها:<br><br>";
                 allLinks.forEach(link => {
                     allFilesReply += `<a href="${link.getAttribute('href')}" download="${link.getAttribute('download') || ''}" style="color: #fff; background: #1e3c72; padding: 4px 8px; border-radius: 4px; text-decoration: none; display: inline-block; margin: 4px;">📂 ${link.textContent.replace('📥', '').trim()}</a> `;
                 });
                 return allFilesReply;
             }
 
-            // 3. قسم الشروحات العلمية الثابتة
+            // 3. قسم الشروحات العلمية (المادة النظرية)
             if (query.includes('مرحبا') || query.includes('أهلا') || query.includes('سلام')) {
-                return "مرحباً بك في المساعد الذكي للمكتبة الرقمية! أنا جاهز تماماً لمساعدتك في الشرح العلمي أو تزويدك بملفات التحميل المباشرة المرفوعة في الموقع. ماذا تحتاج اليوم؟";
+                return "مرحباً بك في المساعد الذكي للمكتبة الرقمية! أنا جاهز لمساعدتك في الشرح العلمي أو تزويدك بملفات التحميل المباشرة. ماذا تحتاج اليوم؟";
             }
             if (query.includes('ديوي') || query.includes('تصنيف')) {
                 return "<b>تصنيف ديوي العشري (DDC):</b> هو نظام لتصنيف محتويات المكتبات وضعه ميلفيل ديوي عام 1876. يعتمد النظام على تقسيم المعرفة البشرية إلى 10 أصول رئيسية (من 000 إلى 900).";
@@ -333,10 +343,10 @@
                 return "<b>الذكاء الاصطناعي في التعليم والمكتبات:</b> يساهم في تخصيص التعلم للطلاب، وفي المكتبات يساعد في أتمتة عمليات التصنيف، وتحسين محركات البحث الموضوعي.";
             }
             if (query.includes('روبوت') || query.includes('دردشة')) {
-                return "<b>روبوتات الدردشة في المكتبات:</b> هي واجهات تفاعلية ذكية تُبنى لتسهيل التواصل مع الباحثين، والإجابة الفورية على استفساراتهم، وإرشادهم لمصادر المعلومات المتاحة بالمكتبة بدقة وسرعة.";
+                return "<b>روبوتات الدردشة في المكتبات:</b> هي واجهات تفاعلية ذكية تُبنى لتسهيل التواصل مع الباحثين، والإجابة الفورية على استفساراتهم، وإرشادهم لمصادر المعلومات بدقة وسرعة.";
             }
             
-            return "شكرًا لسؤالك المهم. بصفتي المساعد الذكي، يمكنني شرح المفاهيم العلمية أو تزويدك بروابط تحميل أي كتاب أو مقال معروض في القائمة أعلاه، فقط اكتب لي اسم الملف الذي تبحث عنه.";
+            return "شكرًا لسؤالك. يمكنني شرح المفاهيم العلمية أو تزويدك بروابط تحميل أي ملف معروض في القائمة أعلاه، فقط اكتب لي اسم الملف بدقة (مثل: مقال روبوت الدردشة، كتاب الفهرسة).";
         }
     </script>
 </body>
