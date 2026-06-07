@@ -280,20 +280,16 @@
               // قاعدة بيانات ذكية ومحلية تدعم تحميل الملفات مباشرة من داخل الشات
                // قاعدة بيانات ذكية ومحلية مصححة ومُرتبة الأولويات 100%
                 // دالة ديناميكية ذكية تقرأ جميع الملفات المرفوعة في الموقع تلقائياً
-       function getSmartLocalResponse(prompt) {
+             function getSmartLocalResponse(prompt) {
             const query = prompt.toLowerCase();
 
-                               function getSmartLocalResponse(prompt) {
-            const query = prompt.toLowerCase();
-
-            // 1. شرط التحميل والملفات المدمج بنافذة العرض وزر التحميل الأخضر المباشر
+            // 1. شرط التحميل التلقائي: يعطي زراً أخضر مباشراً يفتح المجلد الخارجي فوراً
             if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد') || query.includes('أثر')) {
-                return "بالتأكيد! لتصفح وتحميل جميع الكتب والمقالات العلمية المتاحة (بما فيها الملفات المضافة حديثاً)، يمكنك استخدام مركز التحميل السحابي المباشر المدمج أدناه، أو الضغط على زر الفتح السريع للتحميل في صفحة مستقلة:<br><br>" +
-                       `<a href="https://google.com" target="_blank" style="color: #fff; background: #28a745; padding: 6px 12px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold; margin-bottom: 10px;">📂 اضغط هنا لفتح مجلد التحميل المباشر</a><br>` +
-                       `<div style="width:100%; max-width:450px; height:280px; border:2px dashed #2a5298; border-radius:8px; overflow:hidden; margin:10px auto;"><iframe src="https://google.com" style="width:100%; height:100%; border:none;"></iframe></div>`;
+                return "بالتأكيد! لتصفح وتحميل جميع المراجع والكتب العلمية وأوراق العمل المتاحة بمشروعنا (بما فيها بحث <b>أثر تصميم روبوتات الدردشة التفاعلية في بيئة المحفزات</b>)، يرجى الضغط على الرابط المباشر التالي للتحميل السحابي السريع:<br><br>" +
+                       `<a href="https://google.com" target="_blank" style="color: #fff; background: #28a745; padding: 8px 16px; border-radius: 5px; text-decoration: none; display: inline-block; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">📂 اضغط هنا لفتح مجلد التحميل المباشر</a>`;
             }
 
-            // 2. قسم الشروحات العلمية والترحيب من كودك الأصلي البارحة
+            // 2. قسم الشروحات العلمية والترحيب من كودك الأصلي
             if (query.includes('مرحبا') || query.includes('أهلا') || query.includes('سلام')) {
                 return "مرحباً بك في المكتبة الرقمية الذكية! أنا مساعدك الذكي الجاهز للإجابة على أسئلتك العلمية أو توجيهك لمركز تحميل الملفات. ماذا تحتاج اليوم؟";
             }
@@ -312,8 +308,3 @@
             
             return "شكرًا لسؤالك المهم. بصفتي المساعد الذكي، يمكنني شرح المفاهيم العلمية أو تزويدك بروابط تحميل أي كتاب، اكتب كلمة 'تحميل' لأعطيك رابط الوصول الفوري لكافة ملفات وكتب المكتبة.";
         }
-
-
-    </script>
-</body>
-</html>
