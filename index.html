@@ -2,55 +2,45 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المساعد الذكي - المكتبة الرقمية</title>
+    <style>
+        /* تنسيقات بسيطة لضمان ظهور الإطار بشكل أنيق */
+        .drive-container {
+            width: 100%;
+            height: 450px;
+            border: 2px dashed #2a5298;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
 
     <script>
         function getSmartLocalResponse(prompt) {
-            // تحويل النص لأحرف صغيرة وتجهيزه للفحص
+            // تنظيف النص وتحويله لمعالجة دقيقة
             const query = prompt.trim().toLowerCase();
 
-            // 📂 جدول الكتب الرقمية (جاهز لإضافة روابطك مباشرة)
-            const digitalLibrary = [
-                { 
-                    title: "تصنيف ديوي العشري", 
-                    keywords: ["ديوي", "تصنيف", "ddc"], 
-                    url: "ضع_هنا_رابط_كتاب_ديوي_الذي_نسخته_من_غوغل_درايف" 
-                },
-                { 
-                    title: "مبادئ الفهرسة الإلكترونية", 
-                    keywords: ["فهرسة", "فهرس", "مكتبات"], 
-                    url: "ضع_هنا_رابط_كتاب_الفهرسة_الذي_نسخته_من_غوغل_درايف" 
-                },
-                { 
-                    title: "الذكاء الاصطناعي في التعليم", 
-                    keywords: ["ذكاء", "تعليم", "اصطناعي"], 
-                    url: "ضع_هنا_رابط_كتاب_الذكاء_الذي_نسخته_من_غوغل_درايف" 
-                },
-                { 
-                    title: "اثر تصميم روبوتات الدردشة التفاعلية ببيئة المحفزات", 
-                        keywords: ["روبوتات", "دردشة", "تفاعلية", "محفزات", "أثر", "تصميم", "العاب", "تفاعل"
-                    url: "https://drive.google.com/file/d/1QoFNP5zFCQGGJvypuI05NdJWMQJY4sIQ/view?usp=sharing" 
-                }
-            ];
+            // رابط مجلد Google Drive السحابي الخاص بك
+            const googleDriveUrl = "https://google.com";
 
-            // 1. فحص إذا كان الطالب يبحث عن كتاب معين باسمه أو بكلمة مفتاحية تخصه
-            for (let book of digitalLibrary) {
-                if (query.includes(book.title.toLowerCase()) || book.keywords.some(keyword => query.includes(keyword))) {
-                    return `تفضل! لقد وجدت لك كتاب <b>"${book.title}"</b> جاهزاً للتحميل الفوري المباشر:<br><br>` +
-                           `<a href="${book.url}" target="_blank" style="color: #fff; background: #28a745; padding: 8px 16px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">📥 اضغط هنا لتحميل الكتاب</a>`;
-                }
+            // 1. إذا طلب المستخدم تحميلاً، كتباً، أو ملفات (تفتح نافذة العرض التلقائية لكل ملفاتك الـ 4)
+            if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد') || query.includes('أثر')) {
+                return "بالتأكيد! لتصفح وتحميل جميع الكتب والمقالات العلمية (بما فيها بحث <b>أثر تصميم روبوتات الدردشة التفاعلية في بيئة المحفزات</b> والملفات الأخرى)، يمكنك استخدام مركز التحميل السحابي المباشر المدمج أدناه، أو الضغط على زر الفتح المباشر:<br><br>" +
+                       `<a href="${googleDriveUrl}" target="_blank" style="color: #fff; background: #2a5298; padding: 8px 16px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold; margin-bottom: 10px;">📂 فتح المجلد في نافذة خارجية</a>` +
+                       `<div class="drive-container"><iframe src="https://google.com"></iframe></div>`;
             }
 
-            // 2. إذا طلب الطالب تحميلاً عاماً ولم يحدد اسم كتاب معين
-            if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد')) {
-                return "بالتأكيد! ما هو اسم الكتاب أو الموضوع العلمي الذي تبحث عنه؟<br> متوفر لدينا حالياً كتب عن: <b>(تصنيف ديوي، الفهرسة الإلكترونية، الذكاء الاصطناعي، والكتاب الرابع الجديد)</b>. اكتب كلمة مفتاحية لأعطيك رابط تحميله فوراً.";
-            }
-
-            // 3. قسم الترحيب والشروحات العلمية من كودك الأصلي
+            // 2. قسم الشروحات العلمية والترحيب
             if (query.includes('مرحبا') || query.includes('أهلا') || query.includes('سلام')) {
-                return "مرحباً بك في المكتبة الرقمية الذكية! أنا مساعدك الذكي الجاهز للإجابة على أسئلتك العلمية أو إعطائك روابط تحميل الكتب مباشرة. ماذا تحتاج اليوم؟";
+                return "مرحباً بك في المكتبة الرقمية الذكية! أنا مساعدك الذكي الجاهز للإجابة على أسئلتك العلمية أو توجيهك لمركز تحميل الملفات. ماذا تحتاج اليوم؟";
             }
             if (query.includes('ديوي') || query.includes('تصنيف')) {
                 return "<b>تصنيف ديوي العشري (DDC):</b> هو نظام لتصنيف محتويات المكتبات وضعه ميلفيل ديوي عام 1876. يعتمد النظام على تقسيم المعرفة البشرية إلى 10 أصول رئيسية (من 000 إلى 900).";
@@ -58,11 +48,11 @@
             if (query.includes('فهرسة') || query.includes('الفهرس')) {
                 return "<b>الفهرسة الإلكترونية:</b> هي عملية الوصف الفني والموضوعي لمصادر المعلومات باستخدام الحاسب الآلي، لإنتاج فهارس متاحة عبر الإنترنت تسهل الوصول للكتب بسرعة.";
             }
-            if (query.includes('ذكاء') || query.includes('تعليم')) {
-                return "<b>الذكاء الاصطناعي في التعليم والمكتبات:</b> يساهم في تخصيص التعلم للطلاب، وفي المكتبات يساعد في أتمتة عمليات التصنيف، وتحسين محركات البحث الموضوعي.";
+            if (query.includes('ذكاء') || query.includes('تعليم') || query.includes('روبوت')) {
+                return "<b>الذكاء الاصطناعي وروبوتات الدردشة في التعليم:</b> يساهم في تخصيص التعلم للطلاب، وأتمتة عمليات التصنيف في المكتبات، وتوفير بيئة تفاعلية محفزة للتعلم والتصفح الموضوعي.";
             }
             
-            return "شكرًا لسؤالك. يمكنك سؤالي عن المفاهيم العلمية (مثل تصنيف ديوي أو الفهرسة)، أو كتابة اسم الكتاب الذي تريد تحميله مباشرة.";
+            return "شكرًا لسؤالك. يمكنك سؤالي عن المفاهيم العلمية (مثل تصنيف ديوي أو الفهرسة)، أو كتابة كلمة 'تحميل' أو اسم بحثك ليظهر لك مركز الوصول الفوري لكافة ملفات المكتبة المرفوعة.";
         }
     </script>
 </body>
