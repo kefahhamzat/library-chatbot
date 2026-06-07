@@ -2,305 +2,55 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المكتبة الرقمية الذكية</title>
-    <!-- تحديث رابط الأيقونات لضمان عملها -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-        }
-        header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        .intro {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .category-box {
-            background: #fafafa;
-            border-left: 5px solid #2a5298;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-        .category-box h3 {
-            margin-top: 0;
-            color: #1e3c72;
-        }
-        .category-box ul {
-            list-style: none;
-            padding: 0;
-        }
-        .category-box li {
-            margin: 12px 0;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed #ddd;
-        }
-        .category-box a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.2s;
-            display: inline-block;
-        }
-        .category-box a:hover {
-            color: #2a5298;
-            font-weight: bold;
-        }
-        /* تصميم زر الشات بابل */
-        .chat-badge {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 1000;
-        }
-        /* تصميم صندوق المحادثة */
-        .chat-container {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 450px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
-            border: 1px solid #ddd;
-        }
-        .chat-header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .chat-body {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .message {
-            max-width: 80%;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-        .user-message {
-            background: #2a5298;
-            color: white;
-            align-self: flex-start;
-            border-bottom-right-radius: 0;
-        }
-        .bot-message {
-            background: #e9ecef;
-            color: #333;
-            align-self: flex-end;
-            border-bottom-left-radius: 0;
-        }
-        .chat-footer {
-            padding: 10px;
-            display: flex;
-            gap: 8px;
-            background: white;
-            border-top: 1px solid #eee;
-        }
-        .chat-footer input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            outline: none;
-        }
-        .chat-footer button {
-            background: #2a5298;
-            color: white;
-            border: none;
-            padding: 0 15px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .chat-footer button:hover {
-            background: #1e3c72;
-        }
-    </style>
+    <title>المساعد الذكي - المكتبة الرقمية</title>
 </head>
 <body>
 
-    <header>
-        <h1>المكتبة الرقمية الذكية 📚</h1>
-        <p>مشروع تخرج يدمج علم المكتبات بالذكاء الاصطناعي</p>
-    </header>
-
-    <div class="container">
-        <div class="intro">
-            <h2>مرحباً بكم في منصتنا الرقمية</h2>
-            <p>تصفح وحمل المواد العلمية الخاصة بمجال المكتبات والمعلومات، واستعن بالبوت الذكي للإجابة على استفساراتك.</p>
-        </div>
-
-        <div class="grid">
-            <!-- قسم الكتب الرقمية -->
-            <div class="category-box">
-                <h3>📚 الكتب الرقمية</h3>
-                <ul>
-                    <li><a href="./book1.pdf" download="كتاب علم المكتبات الحديث.pdf">📥 كتاب علم المكتبات الحديث.pdf</a></li>
-                    <li><a href="./book2.pdf" download="كتاب الفهرسة الإلكترونية.pdf">📥 كتاب الفهرسة الإلكترونية.pdf</a></li>
-                </ul>
-            </div>
-
-                        <!-- قسم المقالات العلمية -->
-            <div class="category-box">
-                <h3>📄 المقالات العلمية</h3>
-                <ul>
-                    <li><a href="./article1.pdf" download="مقال اتجاهات أخصائي المكتبات.pdf">📥 مقال اتجاهات أخصائي المكتبات.pdf</a></li>
-                    <li><a href="./article2.pdf" download="مقال الذكاء الاصطناعي في التعليم.pdf">📥 مقال الذكاء الاصطناعي في التعليم.pdf</a></li>
-                    <!-- 🟢 هنا تم لصق السطر الجديد بالضبط -->
-                    <li><a href="./article3.pdf" download="مقال أثر استخدام روبوت الدردشة.pdf">📥 مقال أثر استخدام روبوت الدردشة.pdf</a></li>
-                </ul>
-            </div>
-
-
-
-            <!-- قسم الأنشطة وأوراق العمل -->
-            <div class="category-box">
-                <h3>📝 الأنشطة وأوراق العمل</h3>
-                <ul>
-                    <li><a href="./worksheet1.pdf" download="ورقة عمل تصنيف ديوي العشري.pdf">📥 ورقة عمل تصنيف ديوي العشري.pdf</a></li>
-                    <li><a href="./worksheet2.pdf" download="ورقة عمل الفهرسة الموضوعية.pdf">📥 ورقة عمل الفهرسة الموضوعية.pdf</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- زر أيقونة المحادثة المحدثة والمضمونة -->
-    <div class="chat-badge" onclick="toggleChat()">
-        <i class="fa-solid fa-comment-dots"></i>
-    </div>
-
-    <!-- نافذة المحادثة -->
-    <div class="chat-container" id="chatContainer">
-        <div class="chat-header">
-            <span>المساعد الذكي للمكتبة 🤖</span>
-            <i class="fas fa-times" style="cursor: pointer;" onclick="toggleChat()"></i>
-        </div>
-        <div class="chat-body" id="chatBody">
-            <div class="message bot-message">
-                مرحباً بك! أنا الروبوت الذكي الخاص بالمكتبة الرقمية. كيف يمكنني مساعدتك اليوم في تصفح أو فهم المواد العلمية؟
-            </div>
-        </div>
-        <div class="chat-footer">
-            <input type="text" id="chatInput" placeholder="اكتب سؤالك هنا..." onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()">إرسال</button>
-        </div>
-    </div>
-
-        <script>
-        function toggleChat() {
-            const chatContainer = document.getElementById('chatContainer');
-            if (chatContainer.style.display === 'flex') {
-                chatContainer.style.display = 'none';
-            } else {
-                chatContainer.style.display = 'flex';
-            }
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        }
-
-        function sendMessage() {
-            const inputElement = document.getElementById('chatInput');
-            const messageText = inputElement.value.trim();
-            if (!messageText) return;
-
-            // عرض رسالة المستخدم
-            appendMessage(messageText, 'user-message');
-            inputElement.value = '';
-
-            // عرض مؤشر التفكير الوهمي لتبدو العملية ذكية جداً أمام اللجنة
-            const typingIndicator = appendMessage('جاري توليد الإجابة بالذكاء الاصطناعي...', 'bot-message');
-
-            setTimeout(() => {
-                typingIndicator.remove();
-                const responseText = getSmartLocalResponse(messageText);
-                appendMessage(responseText, 'bot-message');
-            }, 1000); // الانتظار لثانية واحدة لتأثير الذكاء الاصطناعي
-        }
-
-        function appendMessage(text, className) {
-            const chatBody = document.getElementById('chatBody');
-            const messageElement = document.createElement('div');
-            messageElement.className = `message ${className}`;
-            messageElement.innerHTML = text; 
-            chatBody.appendChild(messageElement);
-            chatBody.scrollTop = chatBody.scrollHeight;
-            return messageElement;
-        }
-
-        // قاعدة بيانات ذكية ومحلية للإجابة الفورية بثبات 100%
-              // قاعدة بيانات ذكية ومحلية تدعم تحميل الملفات مباشرة من داخل الشات
-               // قاعدة بيانات ذكية ومحلية مصححة ومُرتبة الأولويات 100%
-                // دالة ديناميكية ذكية تقرأ جميع الملفات المرفوعة في الموقع تلقائياً
-                // دالة ديناميكية ذكية ومطورة للفحص الدقيق ومنع تداخل الكلمات
-               // دالة سهلة ومباشرة تحول المستخدم إلى مجلد التحميل السحابي
+    <script>
         function getSmartLocalResponse(prompt) {
-            const query = prompt.toLowerCase();
+            // تحويل النص لأحرف صغيرة وتجهيزه للفحص
+            const query = prompt.trim().toLowerCase();
 
-            // رابط مجلد Google Drive السحابي الذي ترفع فيه ملفاتك بسهولة
-            const googleDriveUrl = "https://drive.google.com/drive/folders/1vs09kUd32ddZ1l6eyDkIqN9AHq7DouW0?usp=sharing";
+            // 📂 جدول الكتب الرقمية (جاهز لإضافة روابطك مباشرة)
+            const digitalLibrary = [
+                { 
+                    title: "تصنيف ديوي العشري", 
+                    keywords: ["ديوي", "تصنيف", "ddc"], 
+                    url: "ضع_هنا_رابط_كتاب_ديوي_الذي_نسخته_من_غوغل_درايف" 
+                },
+                { 
+                    title: "مبادئ الفهرسة الإلكترونية", 
+                    keywords: ["فهرسة", "فهرس", "مكتبات"], 
+                    url: "ضع_هنا_رابط_كتاب_الفهرسة_الذي_نسخته_من_غوغل_درايف" 
+                },
+                { 
+                    title: "الذكاء الاصطناعي في التعليم", 
+                    keywords: ["ذكاء", "تعليم", "اصطناعي"], 
+                    url: "ضع_هنا_رابط_كتاب_الذكاء_الذي_نسخته_من_غوغل_درايف" 
+                },
+                { 
+                    title: "اثر تصميم روبوتات الدردشة التفاعلية ببيئة المحفزات", 
+                        keywords: ["روبوتات", "دردشة", "تفاعلية", "محفزات", "أثر", "تصميم", "العاب", "تفاعل"
+                    url: "https://drive.google.com/file/d/1QoFNP5zFCQGGJvypuI05NdJWMQJY4sIQ/view?usp=sharing" 
+                }
+            ];
 
-            // 1. إذا طلب المستخدم تحميلاً أو ملفاً
-            if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد')) {
-                return "بالتأكيد! لتصفح وتحميل جميع الكتب والمقالات العلمية وأوراق العمل المتاحة في مشروعنا (بما فيها الملفات المضافة حديثاً)، يرجى زيارة مركز التحميل السحابي المباشر عبر الرابط التالي:<br><br>" +
-                       `<a href="${googleDriveUrl}" target="_blank" style="color: #fff; background: #2a5298; padding: 6px 12px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold;">📂 اضغط هنا لفتح مركز التحميل السحابي</a>`;
+            // 1. فحص إذا كان الطالب يبحث عن كتاب معين باسمه أو بكلمة مفتاحية تخصه
+            for (let book of digitalLibrary) {
+                if (query.includes(book.title.toLowerCase()) || book.keywords.some(keyword => query.includes(keyword))) {
+                    return `تفضل! لقد وجدت لك كتاب <b>"${book.title}"</b> جاهزاً للتحميل الفوري المباشر:<br><br>` +
+                           `<a href="${book.url}" target="_blank" style="color: #fff; background: #28a745; padding: 8px 16px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">📥 اضغط هنا لتحميل الكتاب</a>`;
+                }
             }
 
-            // 2. قسم الشروحات العلمية
+            // 2. إذا طلب الطالب تحميلاً عاماً ولم يحدد اسم كتاب معين
+            if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد')) {
+                return "بالتأكيد! ما هو اسم الكتاب أو الموضوع العلمي الذي تبحث عنه؟<br> متوفر لدينا حالياً كتب عن: <b>(تصنيف ديوي، الفهرسة الإلكترونية، الذكاء الاصطناعي، والكتاب الرابع الجديد)</b>. اكتب كلمة مفتاحية لأعطيك رابط تحميله فوراً.";
+            }
+
+            // 3. قسم الترحيب والشروحات العلمية من كودك الأصلي
             if (query.includes('مرحبا') || query.includes('أهلا') || query.includes('سلام')) {
-                return "مرحباً بك في المكتبة الرقمية الذكية! أنا مساعدك الذكي الجاهز للإجابة على أسئلتك العلمية أو توجيهك لمركز تحميل الملفات. ماذا تحتاج اليوم؟";
+                return "مرحباً بك في المكتبة الرقمية الذكية! أنا مساعدك الذكي الجاهز للإجابة على أسئلتك العلمية أو إعطائك روابط تحميل الكتب مباشرة. ماذا تحتاج اليوم؟";
             }
             if (query.includes('ديوي') || query.includes('تصنيف')) {
                 return "<b>تصنيف ديوي العشري (DDC):</b> هو نظام لتصنيف محتويات المكتبات وضعه ميلفيل ديوي عام 1876. يعتمد النظام على تقسيم المعرفة البشرية إلى 10 أصول رئيسية (من 000 إلى 900).";
@@ -312,7 +62,7 @@
                 return "<b>الذكاء الاصطناعي في التعليم والمكتبات:</b> يساهم في تخصيص التعلم للطلاب، وفي المكتبات يساعد في أتمتة عمليات التصنيف، وتحسين محركات البحث الموضوعي.";
             }
             
-            return "شكرًا لسؤالك. يمكنك سؤالي عن المفاهيم العلمية (مثل تصنيف ديوي أو الفهرسة)، أو كتابة كلمة 'تحميل' لأعطيك رابط الوصول الفوري لكافة ملفات وكتب المكتبة.";
+            return "شكرًا لسؤالك. يمكنك سؤالي عن المفاهيم العلمية (مثل تصنيف ديوي أو الفهرسة)، أو كتابة اسم الكتاب الذي تريد تحميله مباشرة.";
         }
     </script>
 </body>
