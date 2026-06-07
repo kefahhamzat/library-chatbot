@@ -3,12 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المساعد الذكي - المكتبة الرقمية</title>
+    <title>المكتبة الرقمية الذكية - المساعد الفوري</title>
     <style>
-        /* تنسيقات بسيطة لضمان ظهور الإطار بشكل أنيق */
+        /* تنسيق الصفحة والواجهة بالكامل لكي تظهر فوراً */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .chat-header {
+            background: #2a5298;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .chat-box {
+            height: 400px;
+            padding: 15px;
+            overflow-y: auto;
+            border-bottom: 1px solid #eee;
+            background: #fafafa;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            line-height: 1.5;
+            max-width: 85%;
+        }
+        .bot-message {
+            background: #eef2f7;
+            color: #333;
+            margin-left: auto;
+            border-right: 4px solid #2a5298;
+        }
+        .user-message {
+            background: #2a5298;
+            color: white;
+            margin-right: auto;
+            text-align: left;
+            border-left: 4px solid #1a365d;
+        }
+        .input-area {
+            display: flex;
+            padding: 10px;
+            background: #fff;
+        }
+        .input-area input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            font-size: 15px;
+        }
+        .input-area button {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            margin-right: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .input-area button:hover {
+            background: #1a365d;
+        }
         .drive-container {
             width: 100%;
-            height: 450px;
+            height: 350px;
             border: 2px dashed #2a5298;
             border-radius: 8px;
             overflow: hidden;
@@ -23,24 +102,64 @@
 </head>
 <body>
 
-    <script>
-        function getSmartLocalResponse(prompt) {
-            // تنظيف النص وتحويله لمعالجة دقيقة
-            const query = prompt.trim().toLowerCase();
+    <h2>مرحباً بك في موقع المكتبة الرقمية 📚</h2>
 
-            // رابط مجلد Google Drive السحابي الخاص بك
+    <!-- واجهة المحادثة المرئية التي اختفت سابقاً -->
+    <div class="chat-container">
+        <div class="chat-header">🤖 المساعد الذكي للمكتبة</div>
+        <div class="chat-box" id="chatBox">
+            <div class="message bot-message">مرحباً بك! أنا مساعدك الذكي. يمكنك سؤالي عن المفاهيم العلمية (مثل تصنيف ديوي أو الفهرسة)، أو كتابة كلمة <b>"تحميل"</b> لتصفح كتب المكتبة.</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="اكتب سؤالك هنا..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">إرسال</button>
+        </div>
+    </div>
+
+    <script>
+        // دالة التعامل مع الضغط على زر الإدخال (Enter)
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // دالة إرسال الرسالة وعرضها
+        function sendMessage() {
+            const inputField = document.getElementById('userInput');
+            const messageText = inputField.value.trim();
+            if (messageText === '') return;
+
+            const chatBox = document.getElementById('chatBox');
+
+            // 1. عرض رسالة المستخدم
+            chatBox.innerHTML += `<div class="message user-message">${messageText}</div>`;
+            inputField.value = ''; // تنظيف الخانة
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // 2. جلب رد المساعد الذكي وعرضه بعد ثانية كأنها كتابة حقيقية
+            setTimeout(() => {
+                const botResponse = getSmartLocalResponse(messageText);
+                chatBox.innerHTML += `<div class="message bot-message">${botResponse}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+        }
+
+        // عقل المساعد الذكي البرمجي (المنطق)
+        function getSmartLocalResponse(prompt) {
+            const query = prompt.trim().toLowerCase();
             const googleDriveUrl = "https://google.com";
 
-            // 1. إذا طلب المستخدم تحميلاً، كتباً، أو ملفات (تفتح نافذة العرض التلقائية لكل ملفاتك الـ 4)
+            // 1. إذا طلب المستخدم ملفات أو تحميل
             if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد') || query.includes('أثر')) {
-                return "بالتأكيد! لتصفح وتحميل جميع الكتب والمقالات العلمية (بما فيها بحث <b>أثر تصميم روبوتات الدردشة التفاعلية في بيئة المحفزات</b> والملفات الأخرى)، يمكنك استخدام مركز التحميل السحابي المباشر المدمج أدناه، أو الضغط على زر الفتح المباشر:<br><br>" +
-                       `<a href="${googleDriveUrl}" target="_blank" style="color: #fff; background: #2a5298; padding: 8px 16px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold; margin-bottom: 10px;">📂 فتح المجلد في نافذة خارجية</a>` +
+                return "بالتأكيد! لتصفح وتحميل جميع الكتب والمقالات العلمية (بما فيها بحث <b>أثر تصميم روبوتات الدردشة التفاعلية في بيئة المحفزات</b>)، يمكنك استخدام مركز التحميل المباشر أدناه أو فتحه في نافذة مستقلة:<br><br>" +
+                       `<a href="${googleDriveUrl}" target="_blank" style="color: #fff; background: #28a745; padding: 6px 12px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold; margin-bottom: 10px;">📂 فتح مجلد التحميل الخارجي</a>` +
                        `<div class="drive-container"><iframe src="https://google.com"></iframe></div>`;
             }
 
-            // 2. قسم الشروحات العلمية والترحيب
+            // 2. شروحات علمية وترحيب
             if (query.includes('مرحبا') || query.includes('أهلا') || query.includes('سلام')) {
-                return "مرحباً بك في المكتبة الرقمية الذكية! أنا مساعدك الذكي الجاهز للإجابة على أسئلتك العلمية أو توجيهك لمركز تحميل الملفات. ماذا تحتاج اليوم؟";
+                return "مرحباً بك مجدداً! أنا هنا لمساعدتك بالإجابة على الأسئلة العلمية أو توجيهك لمركز التحميل المباشر. ماذا تود أن تسأل؟";
             }
             if (query.includes('ديوي') || query.includes('تصنيف')) {
                 return "<b>تصنيف ديوي العشري (DDC):</b> هو نظام لتصنيف محتويات المكتبات وضعه ميلفيل ديوي عام 1876. يعتمد النظام على تقسيم المعرفة البشرية إلى 10 أصول رئيسية (من 000 إلى 900).";
@@ -49,10 +168,10 @@
                 return "<b>الفهرسة الإلكترونية:</b> هي عملية الوصف الفني والموضوعي لمصادر المعلومات باستخدام الحاسب الآلي، لإنتاج فهارس متاحة عبر الإنترنت تسهل الوصول للكتب بسرعة.";
             }
             if (query.includes('ذكاء') || query.includes('تعليم') || query.includes('روبوت')) {
-                return "<b>الذكاء الاصطناعي وروبوتات الدردشة في التعليم:</b> يساهم في تخصيص التعلم للطلاب، وأتمتة عمليات التصنيف في المكتبات، وتوفير بيئة تفاعلية محفزة للتعلم والتصفح الموضوعي.";
+                return "<b>الذكاء الاصطناعي في التعليم:</b> يساهم في تخصيص التعلم للطلاب، وفي المكتبات يساعد في أتمتة عمليات التصنيف وتحسين تجارب التفاعل داخل البيئات التعليمية والمحفزة.";
             }
             
-            return "شكرًا لسؤالك. يمكنك سؤالي عن المفاهيم العلمية (مثل تصنيف ديوي أو الفهرسة)، أو كتابة كلمة 'تحميل' أو اسم بحثك ليظهر لك مركز الوصول الفوري لكافة ملفات المكتبة المرفوعة.";
+            return "شكرًا لسؤالك. يمكنك سؤالي عن المفاهيم العلمية، أو كتابة كلمة 'تحميل' ليظهر لك مركز المجلد السحابي وتتحكم بملفاتك فوراً.";
         }
     </script>
 </body>
