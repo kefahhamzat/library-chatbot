@@ -283,9 +283,13 @@
        function getSmartLocalResponse(prompt) {
             const query = prompt.toLowerCase();
 
-            // 1. شرط التحميل والملفات المدمج بنافذة عرض غوغل درايف الأنيقة والمتناسقة
+                               function getSmartLocalResponse(prompt) {
+            const query = prompt.toLowerCase();
+
+            // 1. شرط التحميل والملفات المدمج بنافذة العرض وزر التحميل الأخضر المباشر
             if (query.includes('تحميل') || query.includes('كتاب') || query.includes('مقالة') || query.includes('مقال') || query.includes('ملف') || query.includes('أريد') || query.includes('أثر')) {
-                return "بالتأكيد! لتصفح وتحميل جميع الكتب والمقالات العلمية (بما فيها الملفات المضافة حديثاً)، يرجى استخدام مركز التحميل السحابي المباشر المدمج أدناه:<br><br>" +
+                return "بالتأكيد! لتصفح وتحميل جميع الكتب والمقالات العلمية المتاحة (بما فيها الملفات المضافة حديثاً)، يمكنك استخدام مركز التحميل السحابي المباشر المدمج أدناه، أو الضغط على زر الفتح السريع للتحميل في صفحة مستقلة:<br><br>" +
+                       `<a href="https://google.com" target="_blank" style="color: #fff; background: #28a745; padding: 6px 12px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold; margin-bottom: 10px;">📂 اضغط هنا لفتح مجلد التحميل المباشر</a><br>` +
                        `<div style="width:100%; max-width:450px; height:280px; border:2px dashed #2a5298; border-radius:8px; overflow:hidden; margin:10px auto;"><iframe src="https://google.com" style="width:100%; height:100%; border:none;"></iframe></div>`;
             }
 
@@ -308,6 +312,7 @@
             
             return "شكرًا لسؤالك المهم. بصفتي المساعد الذكي، يمكنني شرح المفاهيم العلمية أو تزويدك بروابط تحميل أي كتاب، اكتب كلمة 'تحميل' لأعطيك رابط الوصول الفوري لكافة ملفات وكتب المكتبة.";
         }
+
 
     </script>
 </body>
