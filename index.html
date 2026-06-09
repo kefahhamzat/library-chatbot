@@ -105,7 +105,7 @@
     </div>
 </div>
 
-<!-- Chatbase Chat Widget (كود مراقبة زر الإغلاق والمسح الفوري) -->
+<!-- Chatbase Chat Widget (النسخة المستقرة والتحديث التلقائي الفوري) -->
 <script>
 (function(){
     if(!window.chatbase || window.chatbase("getState")!=="initialized"){
@@ -122,29 +122,18 @@
     }
     const onLoad=function(){
         const script=document.createElement("script");
-        script.src="https://chatbase.co";
+        script.src="https://www.chatbase.co/embed.min.js";
         script.id="KWou9XP-zNlceng6-XwDG";
         script.domain="www.chatbase.co";
         document.body.appendChild(script);
         
         script.onload = function() {
-            // مراقبة حالة الـ Widget لرصد الإغلاق والفتح
-            const observer = new MutationObserver(() => {
-                const iframe = document.getElementById("chatbase-message-bubble-iframe");
-                if (iframe) {
-                    // عندما يغلق المستخدم النافذة أو يغادر الجلسة، يتم تصفير المحادثة تلقائياً
-                    if (iframe.style.display === "none" || iframe.getAttribute("data-state") === "closed") {
-                        if (window.chatbase && typeof window.chatbase === 'function') {
-                            window.chatbase("resetChat");
-                        }
-                    }
+            setTimeout(function() {
+                if (window.chatbase && typeof window.chatbase === 'function') {
+                    // الكود المعتمد لتفريغ الشاشة وبدء نافذة محادثة نظيفة فوراً للمستخدم الجديد
+                    window.chatbase("resetChat"); 
                 }
-            });
-
-            // تفعيل المراقبة بعد دمج الـ Widget في الصفحة
-            setTimeout(() => {
-                observer.observe(document.body, { attributes: true, subtree: true, childList: true });
-            }, 2000);
+            }, 500); 
         };
     }
     if(document.readyState==="complete"){
