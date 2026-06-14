@@ -1,121 +1,151 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>المكتبة الرقمية الجامعية</title>
-<style>
-body {font-family: Arial; margin:0; background:#f5f7fa;}
-/* HEADER */
-header {
-    background:#1e3c72;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-/* SEARCH */
-.search {
-    text-align:center;
-    margin:20px;
-}
-.search input {
-    width:60%;
-    padding:10px;
-}
-.search button {
-    padding:10px;
-}
-/* RESULTS */
-.result {
-    background:white;
-    margin:10px auto;
-    padding:10px;
-    width:80%;
-    border-radius:6px;
-    box-shadow:0 0 5px rgba(0,0,0,0.1);
-}
-/* SECTIONS (مخفية بصريًا) */
-.hidden-section {
-    display:none;
-}
-/* CHAT BUTTON */
-.chatbot-btn {
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#2a5298;
-    color:white;
-    padding:12px;
-    border-radius:50px;
-    text-decoration:none;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المكتبة الرقمية الذكية</title><style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f6;
+        color: #333;
+    }
+    header {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .intro {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+    .category-box {
+        background: #fafafa;
+        border-left: 5px solid #2a5298;
+        padding: 20px;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+    .category-box h3 {
+        margin-top: 0;
+        color: #1e3c72;
+    }
+    .category-box ul {
+        list-style: none;
+        padding: 0;
+    }
+    .category-box li {
+        margin: 12px 0;
+        padding-bottom: 8px;
+        border-bottom: 1px dashed #ddd;
+    }
+    .category-box a {
+        color: #333;
+        text-decoration: none;
+    }
+    .category-box a:hover {
+        color: #2a5298;
+        font-weight: bold;
+    }
 </style>
-</head>
-<body>
-<header>
-<h1>المكتبة الرقمية الجامعية</h1>
-<p>نظام مكتبة ذكي مع استرجاع معلوماتي متقدم</p>
-</header>
-<!-- 🔍 SEARCH -->
-<div class="search">
-<input type="text" id="q" placeholder="ابحث في المكتبة...">
-<button onclick="search()">بحث</button>
-</div>
-<div id="results"></div>
-<!-- 📚 DATASET -->
-<script>
-const library = [
-{title:"التصنيف في المكتبات ومراكز المعلومات",type:"كتاب",file:"files/books/new_book1.pdf",keywords:"تصنيف فهرسة ديوي"},
-{title:"الفهرسة الموضوعية",type:"كتاب",file:"files/books/new_book2.pdf",keywords:"فهرسة مكتبات"},
-{title:"الروبوتات الذكية في المكتبات",type:"مقال",file:"files/articles/new_article1.pdf",keywords:"ذكاء اصطناعي روبوت"},
-{title:"دور الجامعة في البحث العلمي",type:"مقال",file:"files/articles/new_article2.pdf",keywords:"بحث علمي جامعة"},
-{title:"معوقات الرقمنة",type:"ورقة عمل",file:"files/worksheets/new_ws1.pdf",keywords:"رقمنة مكتبات"},
-{title:"اللغة والترجمة",type:"ورقة عمل",file:"files/worksheets/new_ws2.pdf",keywords:"لغة ترجمة معلومات"}
-];
-function search(){
-let q = document.getElementById("q").value.toLowerCase();
-let resultsDiv = document.getElementById("results");
-resultsDiv.innerHTML = "";
-// 🔍 بحث ذكي
-let res = library.filter(i =>
-i.title.toLowerCase().includes(q) ||
-i.keywords.toLowerCase().includes(q)
-);
-if(res.length === 0){
-resultsDiv.innerHTML = `
-<div class="result">
-<p>❌ لا توجد نتائج داخل المكتبة</p>
-<p>💡 جرب كلمات: مكتبات، تصنيف، فهرسة، ذكاء اصطناعي</p>
-<a class="chatbot-btn" href="https://www.chatbase.co/chatbot/YOUR_ID" target="_blank">
-🤖 اسأل أمين المكتبة الذكي
+</head><body><header>
+    <h1>المكتبة الرقمية الذكية 📚</h1>
+    <p>مشروع تخرج يدمج علم المكتبات بالذكاء الاصطناعي</p>
+</header><div class="container">
+    <div class="intro">
+        <h2>مرحباً بكم في منصتنا الرقمية</h2>
+        <p>تصفح المواد العلمية واستفد من المساعد الذكي.</p>
+<div class="grid">
+<!-- 📚 الكتب الرقمية -->
+<div class="category-box">
+<h3>📚 الكتب الرقمية</h3>
+<ul>
+<li>
+<a href="https://kefahhamzat.github.io/.../files/books/new_book1.pdf" download>
+التصنيف في المكتبات ومراكز المعلومات
 </a>
-</div>
-`;
-return;
-}
-res.forEach(i=>{
-resultsDiv.innerHTML += `
-<div class="result">
-<h3>${i.title}</h3>
-<p>${i.type}</p>
-<!-- ✅ زر التحميل الصحيح -->
-<a href="${i.file}" download style="
-display:inline-block;
-margin-top:10px;
-padding:8px 12px;
-background:#2a5298;
-color:white;
-text-decoration:none;
-border-radius:5px;">
-⬇ تحميل الملف
+</li>
+<li>
+<a href="https://kefahhamzat.github.io/.../files/books/new_book2.pdf" download>
+الفهرسة الموضوعية
 </a>
+</li>
+</ul>
 </div>
-`;
-});
-}
-</script>
-<!-- 🤖 زر الروبوت -->
-<a class="chatbot-btn" href="https://www.chatbase.co/chatbot/YOUR_ID" target="_blank">
-🤖 أمين المكتبة الذكي
+<!-- 📄 المقالات العلمية -->
+<div class="category-box">
+<h3>📄 المقالات العلمية</h3>
+<ul>
+<li>
+<a href="https://kefahhamzat.github.io/.../articles/new_article1.pdf" download>
+الروبوتات الذكية في المكتبات الأجنبية والعربية
 </a>
-</body>
+</li>
+<li>
+<a href="https://kefahhamzat.github.io/.../articles/new_article2.pdf" download>
+دور الجامعة في تعزيز آليات البحث العلمي لخدمة التنمية المجتمعية
+</a>
+</li>
+</ul>
+</div>
+<!-- 📝 أوراق العمل -->
+<div class="category-box">
+<h3>📝 الأنشطة وأوراق العمل</h3>
+<ul>
+<li>
+<a href="https://kefahhamzat.github.io/.../worksheets/new_ws1.pdf" download>
+معوقات تطبيق الرقمنة بالمكتبات الجامعية الجزائرية
+</a>
+</li>
+<li>
+<a href="https://kefahhamzat.github.io/.../worksheets/new_ws2.pdf" download>
+اللغة والترجمة في عصر تكنولوجيا المعلومات والاتصالات
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div><!-- Chatbase Chat Widget (الصحيح) --><script>
+(function(){
+    if(!window.chatbase || window.chatbase("getState")!=="initialized"){
+        window.chatbase=(...arguments)=>{
+            if(!window.chatbase.q){window.chatbase.q=[]}
+            window.chatbase.q.push(arguments)
+        };
+        window.chatbase=new Proxy(window.chatbase,{
+            get(target,prop){
+                if(prop==="q"){return target.q}
+                return(...args)=>target(prop,...args)
+            }
+        })
+    }
+    const onLoad=function(){
+        const script=document.createElement("script");
+        script.src="https://www.chatbase.co/embed.min.js";
+        script.id="KWou9XP-zNlceng6-XwDG";
+        script.domain="www.chatbase.co";
+        document.body.appendChild(script);
+    }
+    if(document.readyState==="complete"){
+        onLoad()
+    }else{
+        window.addEventListener("load",onLoad)
+    }
+})();
+</script></body>
 </html>
