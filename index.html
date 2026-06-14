@@ -1,151 +1,168 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المكتبة الرقمية الذكية</title><style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f7f6;
-        color: #333;
-    }
-    header {
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .container {
-        max-width: 1000px;
-        margin: 30px auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-    .intro {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-    }
-    .category-box {
-        background: #fafafa;
-        border-left: 5px solid #2a5298;
-        padding: 20px;
-        border-radius: 6px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-    }
-    .category-box h3 {
-        margin-top: 0;
-        color: #1e3c72;
-    }
-    .category-box ul {
-        list-style: none;
-        padding: 0;
-    }
-    .category-box li {
-        margin: 12px 0;
-        padding-bottom: 8px;
-        border-bottom: 1px dashed #ddd;
-    }
-    .category-box a {
-        color: #333;
-        text-decoration: none;
-    }
-    .category-box a:hover {
-        color: #2a5298;
-        font-weight: bold;
-    }
+<meta charset="UTF-8">
+<title>نظام إدارة المكتبة الذكية</title>
+<style>
+body {font-family: Arial; margin:0; background:#f5f7fa;}
+header {
+background:#1e3c72;
+color:white;
+text-align:center;
+padding:20px;
+}
+/* SEARCH */
+.search {
+text-align:center;
+margin:20px;
+}
+.search input {
+width:60%;
+padding:10px;
+}
+/* RESULT */
+.result {
+background:white;
+margin:10px auto;
+padding:12px;
+width:80%;
+border-radius:6px;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+/* BUTTONS */
+.btn {
+display:inline-block;
+margin-top:8px;
+padding:8px 10px;
+border-radius:5px;
+text-decoration:none;
+font-size:13px;
+}
+.download {background:#2a5298;color:white;}
+.chat {background:#444;color:white;margin-right:5px;}
+/* DASHBOARD */
+.dashboard {
+background:white;
+width:80%;
+margin:20px auto;
+padding:15px;
+border-radius:8px;
+text-align:center;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+.stat {
+font-size:18px;
+margin:8px;
+}
+/* FLOAT BOT */
+.bot {
+position:fixed;
+bottom:20px;
+right:20px;
+background:#2a5298;
+color:white;
+padding:12px 18px;
+border-radius:50px;
+text-decoration:none;
+}
 </style>
-</head><body><header>
-    <h1>المكتبة الرقمية الذكية 📚</h1>
-    <p>مشروع دمج علم المكتبات بالذكاء الاصطناعي</p>
-</header><div class="container">
-    <div class="intro">
-        <h2>مرحباً بكم في منصتنا الرقمية</h2>
-        <p>تصفح المواد العلمية واستفد من المساعد الذكي.</p>
- <div class="grid">
-<!-- 📚 الكتب الرقمية -->
-<div class="category-box">
-<h3>📚 الكتب الرقمية</h3>
-<ul>
-<li>
-<a href="https://kefahhamzat.github.io/.../files/books/new_book1.pdf" download>
-التصنيف في المكتبات ومراكز المعلومات
-</a>
-</li>
-<li>
-<a href="https://kefahhamzat.github.io/.../files/books/new_book2.pdf" download>
-الفهرسة الموضوعية
-</a>
-</li>
-</ul>
+</head>
+<body>
+<header>
+<h1>🏛️ نظام إدارة المكتبة الرقمية الذكية</h1>
+<p>مكتبة جامعية + روبوت + تحليلات استخدام</p>
+</header>
+<!-- 🔍 SEARCH -->
+<div class="search">
+<input type="text" id="q" placeholder="ابحث في المكتبة...">
+<button onclick="search()">بحث</button>
 </div>
-<!-- 📄 المقالات العلمية -->
-<div class="category-box">
-<h3>📄 المقالات العلمية</h3>
-<ul>
-<li>
-<a href="https://kefahhamzat.github.io/.../articles/new_article1.pdf" download>
-الروبوتات الذكية في المكتبات الأجنبية والعربية
-</a>
-</li>
-<li>
-<a href="https://kefahhamzat.github.io/.../articles/new_article2.pdf" download>
-دور الجامعة في تعزيز آليات البحث العلمي لخدمة التنمية المجتمعية
-</a>
-</li>
-</ul>
+<!-- 📊 DASHBOARD -->
+<div class="dashboard">
+<h2>📊 لوحة الإحصائيات</h2>
+<div class="stat" id="s1">عمليات البحث: 0</div>
+<div class="stat" id="s2">التحميلات: 0</div>
+<div class="stat" id="s3">تفاعل الروبوت: 0</div>
 </div>
-<!-- 📝 أوراق العمل -->
-<div class="category-box">
-<h3>📝 الأنشطة وأوراق العمل</h3>
-<ul>
-<li>
-<a href="https://kefahhamzat.github.io/.../worksheets/new_ws1.pdf" download>
-معوقات تطبيق الرقمنة بالمكتبات الجامعية الجزائرية
+<div id="results"></div>
+<script>
+const BOT_ID = "KWou9XP";
+// ===== INIT STATS =====
+function get(key){
+return Number(localStorage.getItem(key) || 0);
+}
+function set(key,val){
+localStorage.setItem(key,val);
+updateDashboard();
+}
+// ===== UPDATE DASHBOARD =====
+function updateDashboard(){
+document.getElementById("s1").innerText = "عمليات البحث: " + get("search");
+document.getElementById("s2").innerText = "التحميلات: " + get("download");
+document.getElementById("s3").innerText = "تفاعل الروبوت: " + get("bot");
+}
+updateDashboard();
+// ===== TRACK EVENTS =====
+function addSearch(){
+set("search", get("search")+1);
+}
+function addDownload(){
+set("download", get("download")+1);
+}
+function addBot(){
+set("bot", get("bot")+1);
+}
+// ===== DATABASE =====
+const library = [
+{title:"التصنيف في المكتبات ومراكز المعلومات",type:"كتاب",file:"files/books/new_book1.pdf"},
+{title:"الفهرسة الموضوعية",type:"كتاب",file:"files/books/new_book2.pdf"},
+{title:"الروبوتات الذكية في المكتبات",type:"مقال",file:"files/articles/new_article1.pdf"},
+{title:"دور الجامعة في البحث العلمي",type:"مقال",file:"files/articles/new_article2.pdf"},
+{title:"معوقات الرقمنة",type:"ورقة عمل",file:"files/worksheets/new_ws1.pdf"},
+{title:"اللغة والترجمة",type:"ورقة عمل",file:"files/worksheets/new_ws2.pdf"}
+];
+// ===== SEARCH ENGINE =====
+function search(){
+addSearch();
+let q = document.getElementById("q").value.toLowerCase();
+let results = document.getElementById("results");
+results.innerHTML = "";
+let found = library.filter(i =>
+i.title.toLowerCase().includes(q)
+);
+if(found.length === 0){
+results.innerHTML = `
+<div class="result">
+<p>❌ لا توجد نتائج داخل المكتبة</p>
+<a class="btn chat" href="https://www.chatbase.co/chatbot/${BOT_ID}"
+onclick="addBot()" target="_blank">
+🤖 اسأل أمين المكتبة الذكي
 </a>
-</li>
-<li>
-<a href="https://kefahhamzat.github.io/.../worksheets/new_ws2.pdf" download>
-اللغة والترجمة في عصر تكنولوجيا المعلومات والاتصالات
+</div>
+`;
+return;
+}
+found.forEach(i=>{
+results.innerHTML += `
+<div class="result">
+<h3>${i.title}</h3>
+<p>${i.type}</p>
+<a class="btn download" href="${i.file}" download onclick="addDownload()">
+⬇ تحميل الملف
 </a>
-</li>
-</ul>
+<a class="btn chat" href="https://www.chatbase.co/chatbot/${BOT_ID}"
+onclick="addBot()" target="_blank">
+🤖 استشارة الروبوت
+</a>
 </div>
-</div>
-</div><!-- Chatbase Chat Widget (الصحيح) --><script>
-(function(){
-    if(!window.chatbase || window.chatbase("getState")!=="initialized"){
-        window.chatbase=(...arguments)=>{
-            if(!window.chatbase.q){window.chatbase.q=[]}
-            window.chatbase.q.push(arguments)
-        };
-        window.chatbase=new Proxy(window.chatbase,{
-            get(target,prop){
-                if(prop==="q"){return target.q}
-                return(...args)=>target(prop,...args)
-            }
-        })
-    }
-    const onLoad=function(){
-        const script=document.createElement("script");
-        script.src="https://www.chatbase.co/embed.min.js";
-        script.id="KWou9XP-zNlceng6-XwDG";
-        script.domain="www.chatbase.co";
-        document.body.appendChild(script);
-    }
-    if(document.readyState==="complete"){
-        onLoad()
-    }else{
-        window.addEventListener("load",onLoad)
-    }
-})();
-</script></body>
+`;
+});
+}
+</script>
+<!-- 🤖 FLOATING BOT -->
+<a class="bot" href="https://www.chatbase.co/chatbot/KWou9XP"
+onclick="addBot()" target="_blank">
+🤖 أمين المكتبة الذكي
+</a>
+</body>
 </html>
