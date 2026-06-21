@@ -44,25 +44,13 @@ header {
     color: #2a5298;
     font-weight: bold;
 }
-/* الزر الجديد المخصص للروبوت */
-.bot-button {
-    display: block;
-    width: 250px;
-    margin: 30px auto;
-    padding: 15px 20px;
-    background: #1C64F2;
-    color: white;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(28, 100, 242, 0.4);
-    transition: all 0.3s ease;
-}
-.bot-button:hover {
-    background: #124ec4;
-    transform: translateY(-3px);
+
+/* تنسيق إجباري لتثبيت أيقونة روبوت Dify أسفل اليمين */
+#dify-chatbot-bubble-button {
+    right: 20px !important;
+    left: auto !important;
+    bottom: 20px !important;
+    background-color: #1c64f2 !important;
 }
 </style>
 </head>
@@ -72,12 +60,6 @@ header {
 <p>دمج علم المكتبات بالذكاء الاصطناعي</p>
 </header>
 <div class="container">
-
-<!-- زر تشغيل مساعد الذكاء الاصطناعي المباشر -->
-<a href="https://udify.app" target="_blank" class="bot-button">
-    💬 اسأل المساعد الذكي للمكتبة
-</a>
-
 <div class="grid">
 <!-- الكتب -->
 <div class="category-box">
@@ -129,5 +111,17 @@ header {
 </div>
 </div>
 </div>
+
+<!-- كود السكريبت الصحيح المستضاف على خوادم Dify Cloud الخاصة بحسابك -->
+<script>
+window.difyChatbotConfig = {
+  token: 'W0HqYiraxqdncXIo'
+}
+</script>
+<script
+  src="https://dify.ai"
+  id="W0HqYiraxqdncXIo"
+  defer>
+</script>
 </body>
 </html>
