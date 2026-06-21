@@ -44,54 +44,6 @@ header {
     color: #2a5298;
     font-weight: bold;
 }
-
-/* الأيقونة العائمة أسفل اليمين */
-.chat-trigger-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #1c64f2;
-    color: white;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 60px;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(28, 100, 242, 0.4);
-    z-index: 10000;
-    transition: all 0.3s ease;
-}
-.chat-trigger-btn:hover {
-    transform: scale(1.1);
-    background-color: #124ec4;
-}
-
-/* نافذة الدردشة المخفية التي تظهر داخل الموقع */
-.chat-popup {
-    display: none; /* مخفية في البداية */
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 380px;
-    height: 550px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    overflow: hidden;
-    z-index: 9999;
-    border: none;
-    background: white;
-}
-@media (max-width: 480px) {
-    .chat-popup {
-        width: 100%;
-        height: 100%;
-        bottom: 0;
-        right: 0;
-        border-radius: 0;
-    }
-}
 </style>
 </head>
 <body>
@@ -106,12 +58,12 @@ header {
 <h3>📚 الكتب الرقمية</h3>
 <ul>
 <li>
-<a href="https://github.io" target="_blank">
+<a href="https://kefahhamzat.github.io/.../files/books/new_book1.pdf" target="_blank">
 التصنيف في المكتبات ومراكز المعلومات
 </a>
 </li>
 <li>
-<a href="https://github.io" target="_blank">
+<a href="https://kefahhamzat.github.io/.../files/books/new_book2.pdf" target="_blank">
 الفهرسة الموضوعية
 </a>
 </li>
@@ -122,12 +74,12 @@ header {
 <h3>📄 المقالات العلمية</h3>
 <ul>
 <li>
-<a href="https://github.io" target="_blank">
+<a href="https://kefahhamzat.github.io/.../articles/new_article1.pdf" target="_blank">
 الروبوتات الذكية في المكتبات
 </a>
 </li>
 <li>
-<a href="https://github.io" target="_blank">
+<a href="https://kefahhamzat.github.io/.../articles/new_article2.pdf" target="_blank">
 دور الجامعة في البحث العلمي
 </a>
 </li>
@@ -138,12 +90,12 @@ header {
 <h3>📝 أوراق العمل</h3>
 <ul>
 <li>
-<a href="https://github.io" target="_blank">
+<a href="https://kefahhamzat.github.io/.../worksheets/new_ws1.pdf" target="_blank">
 معوقات الرقمنة في المكتبات
 </a>
 </li>
 <li>
-<a href="https://github.io" target="_blank">
+<a href="https://kefahhamzat.github.io/.../worksheets/new_ws2.pdf" target="_blank">
 اللغة والترجمة في عصر المعلومات
 </a>
 </li>
@@ -151,28 +103,46 @@ header {
 </div>
 </div>
 </div>
-
-<!-- زر الأيقونة العائمة أسفل اليمين -->
-<div class="chat-trigger-btn" onclick="toggleChat()">
-    💬
-</div>
-
-<!-- نافذة المحادثة المضمنة التي تفتح وتغلق داخل الموقع -->
-<div id="chatBox" class="chat-popup">
-    <iframe src="https://dify.ai" width="100%" height="100%" frameborder="0" allow="microphone"></iframe>
-</div>
-
-<!-- كود جافا سكريبت للتحكم بالفتح والإغلاق -->
+<!-- Chatbase -->
 <script>
-function toggleChat() {
-    var chatBox = document.getElementById("chatBox");
-    if (chatBox.style.display === "block") {
-        chatBox.style.display = "none";
-    } else {
-        chatBox.style.display = "block";
-    }
-}
+(function(){
+window.chatbase = window.chatbase || function(){(window.chatbase.q = window.chatbase.q || []).push(arguments)};
+const script = document.createElement("script");
+script.src = "https://www.chatbase.co/embed.min.js";
+script.id = "KWou9XP-zNlceng6-XwDG";
+document.body.appendChild(script);
+})();
 </script>
-
-</body>
-</html>
+<script>
+ window.difyChatbotConfig = {
+  token: 'W0HqYiraiqdnkJio',
+  inputs: {
+    // You can define the inputs from the Start node here
+    // key is the variable name
+    // e.g.
+    // name: "NAME"
+  },
+  systemVariables: {
+    // user_id: 'YOU CAN DEFINE USER ID HERE',
+    // conversation_id: 'YOU CAN DEFINE CONVERSATION ID HERE, IT MUST BE A VALID UUID',
+  },
+  userVariables: {
+    // avatar_url: 'YOU CAN DEFINE USER AVATAR URL HERE',
+    // name: 'YOU CAN DEFINE USER NAME HERE',
+  },
+ }
+</script>
+<script
+ src="https://udify.app/embed.min.js"
+ id="W0HqYiraiqdnkJio"
+ defer>
+</script>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
+  }
+  #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+  }
+</style>
