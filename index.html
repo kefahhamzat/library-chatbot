@@ -62,11 +62,35 @@ header {
     box-shadow: 0 4px 15px rgba(28, 100, 242, 0.4);
     z-index: 10000;
     transition: all 0.3s ease;
-    text-decoration: none;
 }
 .chat-trigger-btn:hover {
     transform: scale(1.1);
     background-color: #124ec4;
+}
+
+/* نافذة الدردشة المخفية التي تظهر داخل الموقع */
+.chat-popup {
+    display: none; /* مخفية في البداية */
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 380px;
+    height: 550px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+    z-index: 9999;
+    border: none;
+    background: white;
+}
+@media (max-width: 480px) {
+    .chat-popup {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
 }
 </style>
 </head>
@@ -128,10 +152,27 @@ header {
 </div>
 </div>
 
-<!-- زر الأيقونة العائمة أسفل اليمين والذي يفتح رابط الروبوت المباشر والآمن بدون حجب -->
-<a href="https://udify.app" target="_blank" class="chat-trigger-btn">
+<!-- زر الأيقونة العائمة أسفل اليمين -->
+<div class="chat-trigger-btn" onclick="toggleChat()">
     💬
-</a>
+</div>
+
+<!-- نافذة المحادثة المضمنة التي تفتح وتغلق داخل الموقع -->
+<div id="chatBox" class="chat-popup">
+    <iframe src="https://dify.ai" width="100%" height="100%" frameborder="0" allow="microphone"></iframe>
+</div>
+
+<!-- كود جافا سكريبت للتحكم بالفتح والإغلاق -->
+<script>
+function toggleChat() {
+    var chatBox = document.getElementById("chatBox");
+    if (chatBox.style.display === "block") {
+        chatBox.style.display = "none";
+    } else {
+        chatBox.style.display = "block";
+    }
+}
+</script>
 
 </body>
 </html>
