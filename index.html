@@ -45,27 +45,28 @@ header {
     font-weight: bold;
 }
 
-/* صندوق مخصص لتثبيت واجهة الروبوت أسفل اليمين بشكل أنيق */
-.chat-container {
+/* الأيقونة العائمة أسفل اليمين */
+.chat-trigger-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 380px;
-    height: 550px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    overflow: hidden;
-    z-index: 9999;
-    border: none;
+    width: 60px;
+    height: 60px;
+    background-color: #1c64f2;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(28, 100, 242, 0.4);
+    z-index: 10000;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
-@media (max-width: 480px) {
-    .chat-container {
-        width: 100%;
-        height: 100%;
-        bottom: 0;
-        right: 0;
-        border-radius: 0;
-    }
+.chat-trigger-btn:hover {
+    transform: scale(1.1);
+    background-color: #124ec4;
 }
 </style>
 </head>
@@ -127,12 +128,10 @@ header {
 </div>
 </div>
 
-<!-- عرض نافذة المحادثة مباشرة داخل الموقع بأسفل اليمين لتفادي حظر الأيقونة -->
-<iframe
-  src="https://udify.app"
-  class="chat-container"
-  allow="microphone">
-</iframe>
+<!-- زر الأيقونة العائمة أسفل اليمين والذي يفتح رابط الروبوت المباشر والآمن بدون حجب -->
+<a href="https://udify.app" target="_blank" class="chat-trigger-btn">
+    💬
+</a>
 
 </body>
 </html>
